@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://github.com/YMCoding/ymcoding.github.io</id>
     <title>YMCode</title>
-    <updated>2021-03-17T12:38:32.825Z</updated>
+    <updated>2021-03-18T11:46:45.803Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://github.com/YMCoding/ymcoding.github.io"/>
     <link rel="self" href="https://github.com/YMCoding/ymcoding.github.io/atom.xml"/>
@@ -34,7 +34,7 @@
         <link href="https://github.com/YMCoding/ymcoding.github.io/post/tomcat-yuan-ma-jie-xi/">
         </link>
         <updated>2021-03-17T12:30:58.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="xxxx">xxxx</h3>
+        <content type="html"><![CDATA[<p><a href="%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD&amp;&amp;%E5%80%92%E5%85%A5">1tomcat-yuan-ma-zhun-bei</a></p>
 ]]></content>
     </entry>
     <entry>
@@ -46,12 +46,7 @@
         <content type="html"><![CDATA[<blockquote>
 <p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
 </blockquote>
-<h2 id="关于我">关于我</h2>
-<ul>
-<li>喜欢购物的程序员</li>
-<li>美团java</li>
-</ul>
-<h2 id="联系我">联系我</h2>
+<h4 id="联系我">联系我</h4>
 <p>yangxueyi02@meituan.com</p>
 ]]></content>
     </entry>
