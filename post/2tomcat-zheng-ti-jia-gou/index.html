@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>java | YMCode</title>
+<title>2.Tomcat整体架构 | YMCode</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://github.com/YMCoding/ymcoding.github.io">YMCode</a></h3>
@@ -87,40 +88,100 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <h2 class="current-tag">标签: java</h2>
-          
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://github.com/YMCoding/ymcoding.github.io/post/java-da-ben-ying/">Java大本营</a>
-    </h2>
-    <p class="article-meta">
-      2021-03-17
-      
-        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/UyB71kACK/" class="badge secondary">
-          java
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://github.com/YMCoding/ymcoding.github.io/post/java-da-ben-ying/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
+          <article class="article">
+            <h1>2.Tomcat整体架构</h1>
+            <p class="article-meta">
+              2021-03-18
+              
+            </p>
+            
+            <div class="post-content">
+              <h4 id="tomcat工作原理">Tomcat工作原理</h4>
+<pre><code>当我们使用浏览器向某一个网站发起Http请求，那么在远程，当Http服务器接收到这个请求之后，会调用具
 
+体的程序(Java类)进行处理，往不同的请求由不同的Java类完成处理，所以tomcat的工作，可以大概的分为
 
+两部分
+
+1.作为连接器，处理Socket连接,负责网络字节流与Request和Response对象的转化
+
+2.加载和管理Servlet,以及具体处理Request请求
+</code></pre>
+<h4 id="tocmat-servlet容器处理流程">Tocmat servlet容器处理流程</h4>
+<pre><code>1)HTTP服务器会把请求信息使用ServletRequest对象封装起来
+
+2)进一步去调用Servlet容器中某个具体的Servlet 
+
+3)在 2)中,Servlet容器拿到请求后,根据URL和Servlet的映射关系,找到相应的Servlet 
+
+4)如果Servlet还没有被加载,就用反射机制创建这个Servlet,并调用Servlet的init方法来完成初始化
+
+5)接着调用这个具体Servlet的service方法来处理请求,请求处理结果使用ServletResponse对象封装
+
+6)把ServletResponse对象返回给HTTP服务器,HTTP服务器会把响应发送给客户端
+
+</code></pre>
+<h4 id="tomcat连接器角色">Tomcat连接器角色</h4>
+<pre><code>Coyote 是Tomcat 中连接器的组件名称 , 是对外的接口。客户端通过Coyote与服务器建立连接、发送请求并接受响应
+</code></pre>
+<h5 id="coyote作用">Coyote作用</h5>
+<pre><code>(1)Coyote 封装了底层的网络通信(Socket 请求及响应处理)
+
+(2)Coyote 使Catalina 容器(容器组件)与具体的请求协议及IO操作方式完全解耦
+
+3)Coyote 将Socket 输入转换封装为 Request 对象,进一步封装后交由Catalina 容器进行处理,处理请求完成后, Catalina 通过Coyote 提供的Response 对象将结果写入输出流
+
+(4)Coyote 负责的是具体协议(应用层)和IO(传输层)相关内
+</code></pre>
+<h5 id="coyote组成">Coyote组成</h5>
+<pre><code>EndPoint
+
+EndPoint 是 Coyote 通信端点,即通信监听的接口,是具体Socket接收和发送处理器,是对传输层的抽象,因此EndPoint用来实现TCP/IP协议的
+</code></pre>
+<pre><code>Processor
+
+Processor 是Coyote 协议处理接口 ,如果说EndPoint是用来实现TCP/IP协议的,那么Processor用来实现
+
+HTTP协议,Processor接收来自EndPoint的Socket,读取字节流解析成Tomcat Request和Response对象,并
+
+通过Adapter将其提交到容器处理,Processor是对应用层协议的抽
+</code></pre>
+<pre><code>ProtocolHandler
+
+实现针对具体协议的处理能力。Tomcat 按照协议和I/O 提供了6个实现类 : AjpNioProtocol , 
+
+AjpAprProtocol, AjpNio2Protocol , Http11NioProtocol , Http11Nio2Protocol ,
+
+Http11AprProtocol
+</code></pre>
+<pre><code>Adapter
+
+ProtocolHandler接口负责解析请求并生成Tomcat Request类。但是这个Request对象不是标准的
+
+ServletRequest,不能用Tomcat Request作为参数来调用容器。Tomcat设计者的解决方案是引入
+
+CoyoteAdapter,这是适配器模式的经典运用,连接器调用CoyoteAdapter的Sevice方法,传入的是Tomcat 
+
+Request对象, CoyoteAdapter负责将Tomcat Request转成ServletRequest,再调用容器
+</code></pre>
+<h4 id="tomcat容器角色">Tomcat容器角色</h4>
+<pre><code>可以认为整个Tomcat就是一个Catalina实例,Tomcat 启动的时候会初始化这个实例,Catalina 实例通过加
+
+载server.xml完成其他实例的创建,创建并管理一个Server,Server创建并管理多个服务, 每个服务又可以
+
+有多个Connector和一个Container，整体结构如下图
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616069801182.png" alt="" loading="lazy"></figure>
+
+            </div>
+          </article>
         </div>
-        <div class="row flex-edges">
-  
-  
-</div>
-
+        <div class="paper" data-aos="fade-in">
+          
+        </div>
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://github.com/YMCoding/ymcoding.github.io/images/avatar.png?v=1616070122478" class="no-responsive avatar">
@@ -191,11 +252,11 @@
     </div>
     <div class="row">
       
-        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/UyB71kACK/" class="badge warning">
+        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/UyB71kACK/" class="badge secondary">
           java
         </a>
       
-        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/WSQZGUlSG/" class="badge secondary">
+        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/WSQZGUlSG/" class="badge success">
           tomcat
         </a>
       
@@ -205,6 +266,7 @@
      | <a class="rss" href="https://github.com/YMCoding/ymcoding.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
+
 
     </div>
 
