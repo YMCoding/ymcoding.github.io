@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://github.com/YMCoding/ymcoding.github.io</id>
     <title>YMCode</title>
-    <updated>2021-03-18T11:46:45.803Z</updated>
+    <updated>2021-03-18T11:48:22.559Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://github.com/YMCoding/ymcoding.github.io"/>
     <link rel="self" href="https://github.com/YMCoding/ymcoding.github.io/atom.xml"/>
@@ -10,15 +10,6 @@
     <logo>https://github.com/YMCoding/ymcoding.github.io/images/avatar.png</logo>
     <icon>https://github.com/YMCoding/ymcoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, YMCode</rights>
-    <entry>
-        <title type="html"><![CDATA[HOME]]></title>
-        <id>https://github.com/YMCoding/ymcoding.github.io/post/home/</id>
-        <link href="https://github.com/YMCoding/ymcoding.github.io/post/home/">
-        </link>
-        <updated>2021-03-17T12:34:27.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="书上说了天下无不散的筵席">书上说了，天下无不散的筵席</h2>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Java大本营]]></title>
         <id>https://github.com/YMCoding/ymcoding.github.io/post/java-da-ben-ying/</id>
@@ -38,7 +29,7 @@
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[关于]]></title>
+        <title type="html"><![CDATA[About]]></title>
         <id>https://github.com/YMCoding/ymcoding.github.io/post/about/</id>
         <link href="https://github.com/YMCoding/ymcoding.github.io/post/about/">
         </link>
@@ -47,7 +38,10 @@
 <p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
 </blockquote>
 <h4 id="联系我">联系我</h4>
-<p>yangxueyi02@meituan.com</p>
+<pre><code>美团新业务-团好货大量招人，有兴趣邮件丢过来 yangxueyi02@meituan.com
+
+
+</code></pre>
 ]]></content>
     </entry>
 </feed>
