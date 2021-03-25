@@ -7,7 +7,7 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://github.com/YMCoding/ymcoding.github.io/favicon.ico?v=1616671773313">
+<link rel="shortcut icon" href="https://github.com/YMCoding/ymcoding.github.io/favicon.ico?v=1616672651456">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -129,7 +129,18 @@
 <ul>
 <li>start</li>
 </ul>
-<pre><code></code></pre>
+<pre><code>start方法，主要调用getServer().start()，由load流程可知，此start方法，调用的为LifecycleBase
+
+的start方法，最终调用的抽象方法startInternal，此方法同抽象方法initInternal相同，都是由各个插
+
+件自己实现的，按照tandardServer -&gt; StandardService -&gt; StandardExcutor-&gt; Engine -&gt; Host -&gt; Context -&gt; Connector 顺序执行startf方法
+</code></pre>
+<p><img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616672165464.png" alt="" loading="lazy"><br>
+<img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616672519570.png" alt="" loading="lazy"></p>
+<h4 id="lifecyclebase">LifecycleBase</h4>
+<pre><code>初始化、start、销毁等动作，都是定义在LifecycleBase中，然后由各个组件自己去实现
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616672649824.png" alt="" loading="lazy"></figure>
 
             </div>
           </article>
@@ -142,7 +153,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://github.com/YMCoding/ymcoding.github.io/images/avatar.png?v=1616671773313" class="no-responsive avatar">
+    <img src="https://github.com/YMCoding/ymcoding.github.io/images/avatar.png?v=1616672651456" class="no-responsive avatar">
     <div class="text-muted">温故而知新</div>
     <div class="social-container">
       
@@ -216,11 +227,11 @@
     </div>
     <div class="row">
       
-        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/UyB71kACK/" class="badge secondary">
+        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/UyB71kACK/" class="badge warning">
           java
         </a>
       
-        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/WSQZGUlSG/" class="badge warning">
+        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/WSQZGUlSG/" class="badge secondary">
           tomcat
         </a>
       
