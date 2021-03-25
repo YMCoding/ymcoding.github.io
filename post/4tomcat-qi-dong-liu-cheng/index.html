@@ -7,7 +7,7 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://ymcoding.github.io/favicon.ico?v=1616672867669">
+<link rel="shortcut icon" href="https://ymcoding.github.io/favicon.ico?v=1616673147486">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -96,7 +96,7 @@
             </p>
             
             <div class="post-content">
-              <h4 id="bootstrap">Bootstrap</h4>
+              <h3 id="bootstrap">Bootstrap</h3>
 <pre><code>运行Tomcat启动类BootStrap
 
 启动类主要作用，通过反射实例化org.apache.catalina.startup.Catalina对象
@@ -104,10 +104,8 @@
 通过反射执行Catalina.load和start方法，如下图
 </code></pre>
 <figure data-type="image" tabindex="1"><img src="https://ymcoding.github.io/post-images/1616071150805.png" alt="" loading="lazy"></figure>
-<h4 id="catalina">Catalina</h4>
-<ul>
-<li>load</li>
-</ul>
+<h3 id="catalina">Catalina</h3>
+<h4 id="load">load</h4>
 <pre><code>load方法，主要创建Digester用来解析server.xml文件，并初始化server对象，执行server的init方法
 </code></pre>
 <p><img src="https://ymcoding.github.io/post-images/1616072141859.png" alt="" loading="lazy"><br>
@@ -126,9 +124,7 @@
 2.StandardServer.initInternal方法里，最后调用 services[i].init()初始化StandardService
 </code></pre>
 <figure data-type="image" tabindex="2"><img src="https://ymcoding.github.io/post-images/1616076756587.png" alt="" loading="lazy"></figure>
-<ul>
-<li>start</li>
-</ul>
+<h4 id="start">start</h4>
 <pre><code>start方法，主要调用getServer().start()，由load流程可知，此start方法，调用的为LifecycleBase
 
 的start方法，最终调用的抽象方法startInternal，此方法同抽象方法initInternal相同，都是由各个插
@@ -137,10 +133,12 @@
 </code></pre>
 <p><img src="https://ymcoding.github.io/post-images/1616672165464.png" alt="" loading="lazy"><br>
 <img src="https://ymcoding.github.io/post-images/1616672519570.png" alt="" loading="lazy"></p>
-<h4 id="lifecyclebase">LifecycleBase</h4>
+<h3 id="lifecyclebase">LifecycleBase</h3>
 <pre><code>初始化、start、销毁等动作，都是定义在LifecycleBase中，然后由各个组件自己去实现
 </code></pre>
 <figure data-type="image" tabindex="3"><img src="https://ymcoding.github.io/post-images/1616672649824.png" alt="" loading="lazy"></figure>
+<h3 id="总结">总结</h3>
+<figure data-type="image" tabindex="4"><img src="https://ymcoding.github.io/post-images/1616673074416.png" alt="" loading="lazy"></figure>
 
             </div>
           </article>
@@ -153,7 +151,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://ymcoding.github.io/images/avatar.png?v=1616672867669" class="no-responsive avatar">
+    <img src="https://ymcoding.github.io/images/avatar.png?v=1616673147486" class="no-responsive avatar">
     <div class="text-muted">温故而知新</div>
     <div class="social-container">
       
@@ -227,11 +225,11 @@
     </div>
     <div class="row">
       
-        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge secondary">
+        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge ">
           java
         </a>
       
-        <a href="https://ymcoding.github.io/tag/WSQZGUlSG/" class="badge ">
+        <a href="https://ymcoding.github.io/tag/WSQZGUlSG/" class="badge secondary">
           tomcat
         </a>
       
