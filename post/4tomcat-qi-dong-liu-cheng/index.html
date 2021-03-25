@@ -7,12 +7,12 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://github.com/YMCoding/favicon.ico?v=1616672794259">
+<link rel="shortcut icon" href="https://ymcoding.github.io/favicon.ico?v=1616672867669">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://github.com/YMCoding/styles/main.css">
+<link rel="stylesheet" href="https://ymcoding.github.io/styles/main.css">
 
 
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -26,7 +26,7 @@
   
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
-    <h3><a href="https://github.com/YMCoding">YMCode</a></h3>
+    <h3><a href="https://ymcoding.github.io">YMCode</a></h3>
   </div>
   <div class="collapsible">
     <input id="collapsible1" type="checkbox" name="collapsible1">
@@ -103,29 +103,29 @@
 
 通过反射执行Catalina.load和start方法，如下图
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://github.com/YMCoding/post-images/1616071150805.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://ymcoding.github.io/post-images/1616071150805.png" alt="" loading="lazy"></figure>
 <h4 id="catalina">Catalina</h4>
 <ul>
 <li>load</li>
 </ul>
 <pre><code>load方法，主要创建Digester用来解析server.xml文件，并初始化server对象，执行server的init方法
 </code></pre>
-<p><img src="https://github.com/YMCoding/post-images/1616072141859.png" alt="" loading="lazy"><br>
-<img src="https://github.com/YMCoding/post-images/1616072153339.png" alt="" loading="lazy"><br>
-<img src="https://github.com/YMCoding/post-images/1616072200339.png" alt="" loading="lazy"></p>
+<p><img src="https://ymcoding.github.io/post-images/1616072141859.png" alt="" loading="lazy"><br>
+<img src="https://ymcoding.github.io/post-images/1616072153339.png" alt="" loading="lazy"><br>
+<img src="https://ymcoding.github.io/post-images/1616072200339.png" alt="" loading="lazy"></p>
 <pre><code>继续跟踪server.init方法发现，会按照StandardServer -&gt; StandardService -&gt; StandardExcutor-&gt; Engine -&gt; Host -&gt; Context -&gt; Connector 顺序，分别执行对应的init方法
 
 每个容器都在初始化自身相关设置的同时，将子容器初始化。
 </code></pre>
-<p><img src="https://github.com/YMCoding/post-images/1616073004633.png" alt="" loading="lazy"><br>
-<img src="https://github.com/YMCoding/post-images/1616072834512.png" alt="" loading="lazy"></p>
+<p><img src="https://ymcoding.github.io/post-images/1616073004633.png" alt="" loading="lazy"><br>
+<img src="https://ymcoding.github.io/post-images/1616072834512.png" alt="" loading="lazy"></p>
 <pre><code>StandardServer是如何初始化StandardService？
 
 1.创建Digester的时候会通过addService配置Service，最终填充StandardServer里的services[]数组里
 
 2.StandardServer.initInternal方法里，最后调用 services[i].init()初始化StandardService
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://github.com/YMCoding/post-images/1616076756587.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://ymcoding.github.io/post-images/1616076756587.png" alt="" loading="lazy"></figure>
 <ul>
 <li>start</li>
 </ul>
@@ -135,12 +135,12 @@
 
 件自己实现的，按照tandardServer -&gt; StandardService -&gt; StandardExcutor-&gt; Engine -&gt; Host -&gt; Context -&gt; Connector 顺序执行startf方法
 </code></pre>
-<p><img src="https://github.com/YMCoding/post-images/1616672165464.png" alt="" loading="lazy"><br>
-<img src="https://github.com/YMCoding/post-images/1616672519570.png" alt="" loading="lazy"></p>
+<p><img src="https://ymcoding.github.io/post-images/1616672165464.png" alt="" loading="lazy"><br>
+<img src="https://ymcoding.github.io/post-images/1616672519570.png" alt="" loading="lazy"></p>
 <h4 id="lifecyclebase">LifecycleBase</h4>
 <pre><code>初始化、start、销毁等动作，都是定义在LifecycleBase中，然后由各个组件自己去实现
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="https://github.com/YMCoding/post-images/1616672649824.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://ymcoding.github.io/post-images/1616672649824.png" alt="" loading="lazy"></figure>
 
             </div>
           </article>
@@ -153,7 +153,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://github.com/YMCoding/images/avatar.png?v=1616672794259" class="no-responsive avatar">
+    <img src="https://ymcoding.github.io/images/avatar.png?v=1616672867669" class="no-responsive avatar">
     <div class="text-muted">温故而知新</div>
     <div class="social-container">
       
@@ -178,43 +178,43 @@
         
           
             <li>
-              <a href="https://github.com/YMCoding/post/4tomcat-qi-dong-liu-cheng/">4.Tomcat启动流程</a>
+              <a href="https://ymcoding.github.io/post/4tomcat-qi-dong-liu-cheng/">4.Tomcat启动流程</a>
             </li>
           
         
           
             <li>
-              <a href="https://github.com/YMCoding/post/3tomcat-sheng-ming-zhou-qi/">3.Tomcat生命周期</a>
+              <a href="https://ymcoding.github.io/post/3tomcat-sheng-ming-zhou-qi/">3.Tomcat生命周期</a>
             </li>
           
         
           
             <li>
-              <a href="https://github.com/YMCoding/post/2tomcat-zheng-ti-jia-gou/">2.Tomcat整体架构</a>
+              <a href="https://ymcoding.github.io/post/2tomcat-zheng-ti-jia-gou/">2.Tomcat整体架构</a>
             </li>
           
         
           
             <li>
-              <a href="https://github.com/YMCoding/post/1tomcat-yuan-ma-zhun-bei/">1.Tomcat源码准备</a>
+              <a href="https://ymcoding.github.io/post/1tomcat-yuan-ma-zhun-bei/">1.Tomcat源码准备</a>
             </li>
           
         
           
             <li>
-              <a href="https://github.com/YMCoding/post/java-da-ben-ying/">Java大本营</a>
+              <a href="https://ymcoding.github.io/post/java-da-ben-ying/">Java大本营</a>
             </li>
           
         
           
             <li>
-              <a href="https://github.com/YMCoding/post/tomcat-yuan-ma-jie-xi/">Tomcat源码解析</a>
+              <a href="https://ymcoding.github.io/post/tomcat-yuan-ma-jie-xi/">Tomcat源码解析</a>
             </li>
           
         
           
             <li>
-              <a href="https://github.com/YMCoding/post/about/">About</a>
+              <a href="https://ymcoding.github.io/post/about/">About</a>
             </li>
           
         
@@ -227,18 +227,18 @@
     </div>
     <div class="row">
       
-        <a href="https://github.com/YMCoding/tag/UyB71kACK/" class="badge warning">
+        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge secondary">
           java
         </a>
       
-        <a href="https://github.com/YMCoding/tag/WSQZGUlSG/" class="badge success">
+        <a href="https://ymcoding.github.io/tag/WSQZGUlSG/" class="badge ">
           tomcat
         </a>
       
     </div>
   </div>
   <div class="paper">
-     | <a class="rss" href="https://github.com/YMCoding/atom.xml" target="_blank">RSS</a>
+     | <a class="rss" href="https://ymcoding.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
 
