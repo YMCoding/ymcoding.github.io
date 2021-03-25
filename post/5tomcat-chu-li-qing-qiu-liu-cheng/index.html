@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>YMCode</title>
+<title>5.Tomcat处理请求流程（1） | YMCode</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://ymcoding.github.io">YMCode</a></h3>
@@ -84,89 +85,80 @@
   </div>
 </nav>
 
-
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
+          <article class="article">
+            <h1>5.Tomcat处理请求流程（1）</h1>
+            <p class="article-meta">
+              2021-03-25
+              
+            </p>
+            
+            <div class="post-content">
+              <h3 id="first">First</h3>
+<pre><code>上篇分析了下tomcat启动过程的源码，本篇分享下tomcat是如何处理http请求的。
+
+此阶段，我愿称为“敌方还有30s到达战场”(网络请求到service处理)
+</code></pre>
+<h3 id="abstractendpoint">AbstractEndpoint</h3>
+<pre><code>前面文章也说过，endpint为tomcat底层处理io的核心类，可看到，有很多实现，本篇文章以NioEndpoint为例子，展开分析
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://ymcoding.github.io/post-images/1616673958185.png" alt="" loading="lazy"></figure>
+<h3 id="nioendpoint">NioEndpoint</h3>
+<pre><code>NioEndpoint 内部，通过Acceptor负责接收即将到来的TCP/IP连接，并将它们分配给合适的processor处理
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://ymcoding.github.io/post-images/1616674210737.png" alt="" loading="lazy"></figure>
+<pre><code>方法内获得了channel，调用Poller的register方法，将连接添加到一个缓存队列里面
+
+register方法内部调用了addEvent将请求放到了SynchronizedQueue队列里
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://ymcoding.github.io/post-images/1616674319673.png" alt="" loading="lazy"></figure>
+<h4 id="poller">Poller</h4>
+<pre><code>Poller为NioEndpoint的内部类
+
+本身继承了Runnable方法，本身是个线程类
+
+其run方法内部负责消费SynchronizedQueue队列，获取到请求，调用processKey
+
+将具体的nio连接转换成SocketProcessorBase（本身是个工作线程）调用其execute方法，执行这个线程
+
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://ymcoding.github.io/post-images/1616675161128.png" alt="" loading="lazy"></figure>
+<h4 id="socketprocessorbase">SocketProcessorBase</h4>
+<pre><code>SocketProcessorBase doRun方法是个抽象方法，在各自Endpoint类中各自实现
+
+NioEndpoint的实现类中，调用Handler的 process方法，用来处理nio的请求，实现类为AbstractProtocol
+</code></pre>
+<h4 id="abstractprotocol">AbstractProtocol</h4>
+<pre><code>根据socket的类型，选择不同的processor，调用其process进行请求的处理
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://ymcoding.github.io/post-images/1616675943044.png" alt="" loading="lazy"></figure>
+<h4 id="abstractprocessorlight">AbstractProcessorLight</h4>
+<pre><code>Processor的process方法在AbstractProcessorLight中实现，会调用抽象service()方法
+</code></pre>
+<pre><code>查看service实现，发现，service方法，主要将网络请求封装成request、reqpons，调用adapter.service方法
+</code></pre>
+<figure data-type="image" tabindex="6"><img src="https://ymcoding.github.io/post-images/1616676360413.png" alt="" loading="lazy"></figure>
+<h3 id="总结">总结</h3>
+<pre><code>看文章可能觉得有些饶，一是表达形式的原因，可能表达的不是那么请求，简单做个总结
+
+个人觉得上述流程，我想称之为“请求还有30s到达容器”
+
+即，通过Endpoint socket监听，拿到网络请求，通过protocol选择不同的processor进行请求的处理，
+
+将请求转发给tomcat的不同的servce进行处理
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
           
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://ymcoding.github.io/post/tomcat-yuan-ma-jie-xi/">Tomcat源码解析</a>
-    </h2>
-    <p class="article-meta">
-      2021-03-17
-      
-        <a href="https://ymcoding.github.io/tag/WSQZGUlSG/" class="badge secondary">
-          tomcat
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://ymcoding.github.io/post/tomcat-yuan-ma-jie-xi/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://ymcoding.github.io/post/java-da-ben-ying/">Java大本营</a>
-    </h2>
-    <p class="article-meta">
-      2021-03-17
-      
-        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge warning">
-          java
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://ymcoding.github.io/post/java-da-ben-ying/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://ymcoding.github.io/post/about/">About</a>
-    </h2>
-    <p class="article-meta">
-      2019-01-25
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://ymcoding.github.io/post/about/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
         </div>
         
-        <div class="row flex-edges">
-  
-  
-</div>
-
       </div>
-      
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://ymcoding.github.io/images/avatar.png?v=1616676861003" class="no-responsive avatar">
@@ -249,11 +241,11 @@
     </div>
     <div class="row">
       
-        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge warning">
+        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge secondary">
           java
         </a>
       
-        <a href="https://ymcoding.github.io/tag/WSQZGUlSG/" class="badge secondary">
+        <a href="https://ymcoding.github.io/tag/WSQZGUlSG/" class="badge success">
           tomcat
         </a>
       
@@ -264,7 +256,9 @@
   </div>
 </div>
 
+
     </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
