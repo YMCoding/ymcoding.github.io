@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>文章归档 | YMCode</title>
+<title>4.Tomcat启动流程 | YMCode</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://github.com/YMCoding/ymcoding.github.io">YMCode</a></h3>
@@ -84,65 +85,61 @@
   </div>
 </nav>
 
-    
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          
+          <article class="article">
+            <h1>4.Tomcat启动流程</h1>
+            <p class="article-meta">
+              2021-03-18
+              
+            </p>
+            
+            <div class="post-content">
+              <h4 id="bootstrap">Bootstrap</h4>
+<pre><code>运行Tomcat启动类BootStrap
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
-            
-              <h3 class="year" data-aos-delay="500">2021</h3>
-              
-                
-                  <article class="post">
-                    <a href="https://github.com/YMCoding/ymcoding.github.io/post/java-da-ben-ying/">
-                      <h4 class="post-title">
-                        Java大本营
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://github.com/YMCoding/ymcoding.github.io/post/tomcat-yuan-ma-jie-xi/">
-                      <h4 class="post-title">
-                        Tomcat源码解析
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-                
-              
-            
-              <h3 class="year" data-aos-delay="500">2019</h3>
-              
-                
-              
-                
-              
-                
-                  <article class="post">
-                    <a href="https://github.com/YMCoding/ymcoding.github.io/post/about/">
-                      <h4 class="post-title">
-                        About
-                      </h4>
-                    </a>
-                  </article>
-                
-              
-            
-          </div>
+启动类主要作用，通过反射实例化org.apache.catalina.startup.Catalina对象
+
+通过反射执行Catalina.load和start方法，如下图
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616071150805.png" alt="" loading="lazy"></figure>
+<h4 id="catalina">Catalina</h4>
+<ul>
+<li>load</li>
+</ul>
+<pre><code>load方法，主要创建Digester用来解析server.xml文件，并初始化server对象，执行server的init方法
+</code></pre>
+<p><img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616072141859.png" alt="" loading="lazy"><br>
+<img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616072153339.png" alt="" loading="lazy"><br>
+<img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616072200339.png" alt="" loading="lazy"></p>
+<pre><code>继续跟踪server.init方法发现，会按照StandardServer -&gt; StandardService -&gt; StandardExcutor-&gt; Engine -&gt; Host -&gt; Context -&gt; Connector 顺序，分别执行对应的init方法
+
+每个容器都在初始化自身相关设置的同时，将子容器初始化。
+</code></pre>
+<p><img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616073004633.png" alt="" loading="lazy"><br>
+<img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616072834512.png" alt="" loading="lazy"></p>
+<pre><code>StandardServer是如何初始化StandardService？
+
+1.创建Digester的时候会通过addService配置Service，最终填充StandardServer里的services[]数组里
+
+2.StandardServer.initInternal方法里，最后调用 services[i].init()初始化StandardService
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://github.com/YMCoding/ymcoding.github.io/post-images/1616076756587.png" alt="" loading="lazy"></figure>
+<ul>
+<li>start</li>
+</ul>
+<pre><code></code></pre>
+
+            </div>
+          </article>
         </div>
-        <div class="row flex-edges">
-  
-  
-</div>
-
+        <div class="paper" data-aos="fade-in">
+          
+        </div>
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://github.com/YMCoding/ymcoding.github.io/images/avatar.png?v=1616671773313" class="no-responsive avatar">
@@ -219,7 +216,7 @@
     </div>
     <div class="row">
       
-        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/UyB71kACK/" class="badge ">
+        <a href="https://github.com/YMCoding/ymcoding.github.io/tag/UyB71kACK/" class="badge secondary">
           java
         </a>
       
@@ -234,6 +231,8 @@
   </div>
 </div>
 
+
+    </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
