@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://github.com/YMCoding/ymcoding.github.io</id>
+    <id>https://github.com/YMCoding</id>
     <title>YMCode</title>
-    <updated>2021-03-25T11:45:42.357Z</updated>
+    <updated>2021-03-25T11:46:37.824Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://github.com/YMCoding/ymcoding.github.io"/>
-    <link rel="self" href="https://github.com/YMCoding/ymcoding.github.io/atom.xml"/>
+    <link rel="alternate" href="https://github.com/YMCoding"/>
+    <link rel="self" href="https://github.com/YMCoding/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>https://github.com/YMCoding/ymcoding.github.io/images/avatar.png</logo>
-    <icon>https://github.com/YMCoding/ymcoding.github.io/favicon.ico</icon>
+    <logo>https://github.com/YMCoding/images/avatar.png</logo>
+    <icon>https://github.com/YMCoding/favicon.ico</icon>
     <rights>All rights reserved 2021, YMCode</rights>
     <entry>
         <title type="html"><![CDATA[Java大本营]]></title>
-        <id>https://github.com/YMCoding/ymcoding.github.io/post/java-da-ben-ying/</id>
-        <link href="https://github.com/YMCoding/ymcoding.github.io/post/java-da-ben-ying/">
+        <id>https://github.com/YMCoding/post/java-da-ben-ying/</id>
+        <link href="https://github.com/YMCoding/post/java-da-ben-ying/">
         </link>
         <updated>2021-03-17T12:31:30.000Z</updated>
         <content type="html"><![CDATA[<h2 id="xxx">xxx</h2>
@@ -21,8 +21,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Tomcat源码解析]]></title>
-        <id>https://github.com/YMCoding/ymcoding.github.io/post/tomcat-yuan-ma-jie-xi/</id>
-        <link href="https://github.com/YMCoding/ymcoding.github.io/post/tomcat-yuan-ma-jie-xi/">
+        <id>https://github.com/YMCoding/post/tomcat-yuan-ma-jie-xi/</id>
+        <link href="https://github.com/YMCoding/post/tomcat-yuan-ma-jie-xi/">
         </link>
         <updated>2021-03-17T12:30:58.000Z</updated>
         <content type="html"><![CDATA[<p><a href="/post/1tomcat-yuan-ma-zhun-bei">1.源码下载&amp;&amp;倒入运行</a><br>
@@ -33,8 +33,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[About]]></title>
-        <id>https://github.com/YMCoding/ymcoding.github.io/post/about/</id>
-        <link href="https://github.com/YMCoding/ymcoding.github.io/post/about/">
+        <id>https://github.com/YMCoding/post/about/</id>
+        <link href="https://github.com/YMCoding/post/about/">
         </link>
         <updated>2019-01-25T11:09:48.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
