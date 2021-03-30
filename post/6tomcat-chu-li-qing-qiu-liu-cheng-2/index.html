@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>About | YMCode</title>
+<title>6.Tomcat处理请求流程（2） | YMCode</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -97,21 +97,57 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>About</h1>
+            <h1>6.Tomcat处理请求流程（2）</h1>
             <p class="article-meta">
-              2019-01-25
+              2021-03-30
               
             </p>
             
             <div class="post-content">
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h4 id="联系我">联系我</h4>
-<pre><code>美团新业务-团好货大量招人，有兴趣邮件丢过来 yangxueyi02@meituan.com
-
-
+              <h3 id="first">First</h3>
+<pre><code>继续上篇文章，此时请求已经打到了容器里，看下容器又是怎么处理请求的。
 </code></pre>
+<h3 id="coyoteadapter">CoyoteAdapter</h3>
+<pre><code>Adapter连接了Tomcat连接器Connector和容器Container
+
+它的实现类是CoyoteAdapter主要负责的是对请求进行封装
+
+构造Request和Response对象，并将请求转发给Container也就是Servlet容器.
+</code></pre>
+<h4 id="service方法">service方法</h4>
+<pre><code>service的代码流程首先是从coyote的request和response得到connector的request和response并且他们之间互相链接
+
+接下来是通过postParseRequest来解析请求的参数，查找context,解析CookieID,session等
+
+然后用connector.getService().getContainer().getPipeline().getFirst().invoke(request, response)调用容器的方法
+
+从调用的方式可以知道,这个Container已经内置在StandardService中.也就是server.xml的Engine节点.
+
+Engine节点，匹配到具体的Host
+
+Host匹配到context
+
+context匹配到Wrapper
+
+最后是结束请求.调用connector的回调方法.
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://ymcoding.github.io/post-images/1617107119956.png" alt="" loading="lazy"></figure>
+<h3 id="standardenginevalve">StandardEngineValve</h3>
+<pre><code>invoke的具体实现类，匹配具体的host，调用host.invoke
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://ymcoding.github.io/post-images/1617107930360.png" alt="" loading="lazy"></figure>
+<h3 id="standardhostvalve">StandardHostValve</h3>
+<pre><code>invoke的具体实现类，匹配到context，调用context.invoke
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://ymcoding.github.io/post-images/1617108079142.png" alt="" loading="lazy"></figure>
+<h3 id="standardcontextvalve">StandardContextValve</h3>
+<pre><code>invoke的具体实现类，匹配到wrapper，调用wrapper.invoke
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://ymcoding.github.io/post-images/1617108181728.png" alt="" loading="lazy"></figure>
+<h3 id="standardwrappervalve">StandardWrapperValve</h3>
+<pre><code>拿到过滤器，执行过滤器逻辑
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="https://ymcoding.github.io/post-images/1617108328202.png" alt="" loading="lazy"></figure>
 
             </div>
           </article>
@@ -216,7 +252,7 @@
     </div>
     <div class="row">
       
-        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge ">
+        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge success">
           java
         </a>
       
