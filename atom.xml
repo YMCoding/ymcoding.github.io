@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ymcoding.github.io</id>
     <title>YMCode</title>
-    <updated>2021-03-30T02:27:56.858Z</updated>
+    <updated>2021-03-30T12:06:51.533Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ymcoding.github.io"/>
     <link rel="self" href="https://ymcoding.github.io/atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://ymcoding.github.io/images/avatar.png</logo>
     <icon>https://ymcoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, YMCode</rights>
+    <entry>
+        <title type="html"><![CDATA[SPRING合集]]></title>
+        <id>https://ymcoding.github.io/post/spring-he-ji/</id>
+        <link href="https://ymcoding.github.io/post/spring-he-ji/">
+        </link>
+        <updated>2021-03-30T02:24:02.000Z</updated>
+        <content type="html"><![CDATA[<p>1.<a href="https://mp.weixin.qq.com/s/1PSYTCvkDocUNU4AGbuLng">@Transactional 失效的3种场景及解决办法</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Java大本营]]></title>
         <id>https://ymcoding.github.io/post/java-da-ben-ying/</id>
