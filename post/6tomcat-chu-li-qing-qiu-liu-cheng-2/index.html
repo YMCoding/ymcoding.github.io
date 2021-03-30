@@ -7,7 +7,7 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://ymcoding.github.io/favicon.ico?v=1617108341501">
+<link rel="shortcut icon" href="https://ymcoding.github.io/favicon.ico?v=1617109195521">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -145,9 +145,20 @@ context匹配到Wrapper
 </code></pre>
 <figure data-type="image" tabindex="4"><img src="https://ymcoding.github.io/post-images/1617108181728.png" alt="" loading="lazy"></figure>
 <h3 id="standardwrappervalve">StandardWrapperValve</h3>
-<pre><code>拿到过滤器，执行过滤器逻辑
+<pre><code>调用链路这么长，终于看到了最终处理request和response的地方，StandardWrapperValve主要做 以下几件事
+
+1.加载最终处理请求request的servlet实例
+
+2.创建过滤器链(filterChain)
+调用过滤器链的doFilter方法来处理对应的request和response。
+filter逻辑执行完后，调用servlet.service方法来处理request和response
+后续处理释放过滤器链
+
+3.后续处理卸载该次处理的servlet实例
 </code></pre>
-<figure data-type="image" tabindex="5"><img src="https://ymcoding.github.io/post-images/1617108328202.png" alt="" loading="lazy"></figure>
+<p><img src="https://ymcoding.github.io/post-images/1617108564106.png" alt="" loading="lazy"><br>
+<img src="https://ymcoding.github.io/post-images/1617108328202.png" alt="" loading="lazy"><br>
+<img src="https://ymcoding.github.io/post-images/1617108570422.png" alt="" loading="lazy"></p>
 
             </div>
           </article>
@@ -160,7 +171,7 @@ context匹配到Wrapper
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://ymcoding.github.io/images/avatar.png?v=1617108341501" class="no-responsive avatar">
+    <img src="https://ymcoding.github.io/images/avatar.png?v=1617109195521" class="no-responsive avatar">
     <div class="text-muted">温故而知新</div>
     <div class="social-container">
       
@@ -252,11 +263,11 @@ context匹配到Wrapper
     </div>
     <div class="row">
       
-        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge success">
+        <a href="https://ymcoding.github.io/tag/UyB71kACK/" class="badge secondary">
           java
         </a>
       
-        <a href="https://ymcoding.github.io/tag/WSQZGUlSG/" class="badge success">
+        <a href="https://ymcoding.github.io/tag/WSQZGUlSG/" class="badge ">
           tomcat
         </a>
       
