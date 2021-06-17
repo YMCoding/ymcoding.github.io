@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ymcoding.github.io</id>
     <title>YMCode</title>
-    <updated>2021-03-31T07:50:37.569Z</updated>
+    <updated>2021-06-17T09:01:25.640Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ymcoding.github.io"/>
     <link rel="self" href="https://ymcoding.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://ymcoding.github.io/images/avatar.png</logo>
     <icon>https://ymcoding.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, YMCode</rights>
+    <entry>
+        <title type="html"><![CDATA[入职第210天]]></title>
+        <id>https://ymcoding.github.io/post/ru-zhi-di-210-tian/</id>
+        <link href="https://ymcoding.github.io/post/ru-zhi-di-210-tian/">
+        </link>
+        <updated>2021-06-17T08:51:01.000Z</updated>
+        <content type="html"><![CDATA[<p><u><em>入职第210天，时间过的真快</em></u></p>
+<h4 id="关于工作">关于工作</h4>
+<p>2020年11月12日，来到了传说中的开水厂，开始了自己三年职业生涯的第三段工作。</p>
+<p>来到美团也是缘分使然，即将放弃面试准备休息一段时间的时候，迎来了优选以及配送部门的面试，也很幸运，两个部门都面过了</p>
+<p>纠结了几次，还是选择了配送，觉得是个稳定业务，想好好的沉淀下自己（PS：工作划水，多看书），然而，计划赶不上变化</p>
+<p>新业务团好货如火如荼的开展，我这个小螺丝钉也被征召过来了，开始了“充实”的</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SPRING合集]]></title>
         <id>https://ymcoding.github.io/post/spring-he-ji/</id>
